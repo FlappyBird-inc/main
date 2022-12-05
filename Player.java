@@ -7,15 +7,18 @@ public class Player extends Thread
     public Rectangle player;
     private int x,y;
     private int w,h;
+    private boolean alive = false;
     public void run(){
-        while(y < 1080){
+        while(y != 700){
             p.setLocation(x,y);
-            y++;
+            y+=2;
             try{
                 Thread.sleep(10);
             }
             catch(Exception e){}
         }
+        alive = true;
+        JOptionPane.showMessageDialog(null, "you died");
     }
 
     public Player(){
@@ -44,5 +47,8 @@ public class Player extends Thread
     }
     public void setY(int y){
         this.y = y;
+    }
+    public boolean gameOver(){
+        return alive;
     }
 }
