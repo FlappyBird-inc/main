@@ -1,15 +1,26 @@
 import java.awt.Rectangle;
 import javax.swing.*;
-public class Player
+public class Player extends Thread 
 {
     private JLabel p;
     private ImageIcon i;
     public Rectangle player;
     private int x,y;
     private int w,h;
+    public void run(){
+        while(y < 1080){
+            p.setLocation(x,y);
+            y++;
+            try{
+                Thread.sleep(10);
+            }
+            catch(Exception e){}
+        }
+    }
+
     public Player(){
-        x = 50;
-        y = 50;
+        x = 100;
+        y = 350;
         w = 127;
         h=80;
         i = new ImageIcon("img/flappy.png");
@@ -30,5 +41,8 @@ public class Player
     }
     public int getH(){
         return h;
+    }
+    public void setY(int y){
+        this.y = y;
     }
 }
