@@ -7,8 +7,9 @@ public class Player extends Thread
     public Rectangle player;
     private int x,y;
     private int w,h;
-    private boolean alive = false;
+    private boolean alive;
     public void run(){
+        alive = false;
         while(y != 700){
             p.setLocation(x,y);
             y+=2;

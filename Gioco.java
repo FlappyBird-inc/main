@@ -7,18 +7,17 @@ import java.awt.event.ActionEvent;
 
 public class Gioco extends JFrame implements ActionListener,KeyListener
 {
-    Player p = new Player();
-    Tubo t1 = new Tubo(500,600);
-    Tubo t2 = new Tubo(800,600);
-    Tubo t3 = new Tubo(1100,600);
+    public Player p = new Player();
+    private Tubo t1 = new Tubo(500,600);
+    private Tubo t2 = new Tubo(800,600);
+    private Tubo t3 = new Tubo(1100,600);
     private int x = p.getX();
     private int y = p.getY();
     public Gioco(){
         init();
-        update();
     }
     
-    public void init(){
+    public void init(){ //initialize 6 tubo, 2 for each object
         setLayout(null);
         setSize(1920,1080);
         this.addKeyListener(this);
@@ -45,10 +44,14 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
         add(p.getL());
         setFocusable(true);
         setVisible(true);
+        p.start();
+        t1.start();
+        t2.start();
+        t3.start();
     }
     public void actionPerformed(ActionEvent e){}
     public void keyPressed(KeyEvent e){
-        if (e.getKeyCode() == KeyEvent.VK_SPACE){
+        if (e.getKeyCode() == KeyEvent.VK_SPACE){//on spacebar pressed flappy bird flies
             y = p.getY();
             p.interrupt();
             y-=40;
@@ -59,20 +62,6 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
             }
             catch(Exception yeet){}
             p.start();
-        }
-    }
-    public void update(){
-        p.start();
-        t1.start();
-        t2.start();
-        t3.start();
-        while(p.gameOver()){
-            if(p.gameOver()){
-                t1.interrupt();
-                t2.interrupt();
-                t3.interrupt();
-                p.interrupt();
-            }
         }
     }
     public void keyReleased(KeyEvent e){}

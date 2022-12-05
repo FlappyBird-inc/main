@@ -6,9 +6,7 @@ public class Tubo extends Thread
     private JLabel tUp,tDown;
     private ImageIcon up,down;
     public Rectangle hitMeBaby,hitMeBabyParte2LaVendetta;
-    private int w,h;
-    /*private int x2 = 500;
-    private int x3 = 800;                   up   down*/
+    private int w,h;                      //up   down
     private int[][] pos = new int[2][2];//{{x,0},{x,y}};
     public Tubo(int x,int y){
         pos[0][0] = x;
