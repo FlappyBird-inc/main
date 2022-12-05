@@ -48,6 +48,7 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
         t1.start();
         t2.start();
         t3.start();
+        update();
     }
     public void actionPerformed(ActionEvent e){}
     public void keyPressed(KeyEvent e){
@@ -62,10 +63,16 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
             }
             catch(Exception yeet){}
             p.start();
+        }
+    }
+    public void update(){
+        while(true){
             if(p.gameOver()){
                 t1.interrupt();
                 t2.interrupt();
                 t3.interrupt();
+                setVisible(false);
+                dispose();
             }
         }
     }

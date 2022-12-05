@@ -19,6 +19,7 @@ public class Player extends Thread
         }
         alive = true;
         JOptionPane.showMessageDialog(null, "you died");
+        
     }
 
     public Player(){
