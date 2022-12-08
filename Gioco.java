@@ -2,10 +2,8 @@
 import javax.swing.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class Gioco extends JFrame implements ActionListener,KeyListener
+public class Gioco extends JFrame implements KeyListener
 {
     public Player p = new Player();
     private Tubo t1 = new Tubo(500,600);
@@ -16,7 +14,6 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
     public Gioco(){
         init();
     }
-    
     public void init(){ //initialize 6 tubo, 2 for each object
         setLayout(null);
         setSize(1920,1080);
@@ -49,7 +46,6 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
         t2.start();
         t3.start();
     }
-    public void actionPerformed(ActionEvent e){}
     public void keyPressed(KeyEvent e){
         if (e.getKeyCode() == KeyEvent.VK_SPACE){//on spacebar pressed flappy bird flies
             y = p.getY();
@@ -57,10 +53,10 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
             y-=40;
             p.setY(y);
             p.getL().setLocation(x,y);
-            try{
+            /*try{
                 Thread.sleep(10);
             }
-            catch(Exception yeet){}
+            catch(Exception yeet){}*/
             p.start();
         }
     }
