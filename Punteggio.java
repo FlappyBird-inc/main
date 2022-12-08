@@ -13,7 +13,7 @@ public class Punteggio extends Thread {
         l=new JLabel("0");
     }
     public void run(){
-       l.setLocation(x, y); 
+       //l.setLocation(x, y); non serve(è già settato in Gioco) 
 
     }
     public JLabel getL(){

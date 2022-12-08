@@ -34,7 +34,7 @@ public class Gioco extends JFrame implements KeyListener
         t2.getTDown().setSize(t2.getW(),t2.getH());
         t3.getTDown().setSize(t3.getW(),t3.getH());
         punti.getL().setLocation(punti.getX(),punti.getY());
-        p.getL().setSize(punti.getW(),punti.getH());
+        punti.getL().setSize(punti.getW(),punti.getH());
         add(t1.getTUp());
         add(t2.getTUp());
         add(t3.getTUp());
@@ -58,10 +58,6 @@ public class Gioco extends JFrame implements KeyListener
             y-=40;
             p.setY(y);
             p.getL().setLocation(x,y);
-            /*try{
-                Thread.sleep(10);
-            }
-            catch(Exception yeet){}*/
             p.start();
         }
     }
