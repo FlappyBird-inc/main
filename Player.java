@@ -7,10 +7,10 @@ public class Player extends Thread
     public Rectangle player;
     private int x,y;
     private int w,h;
-    private boolean alive;
+    private static boolean alive;
     public void run(){
-        alive = false;
-        while(y != 700){
+        alive = true;
+        while(y != 700 && y != 0){
             p.setLocation(x,y);
             y+=2;
             try{
@@ -18,11 +18,9 @@ public class Player extends Thread
             }
             catch(Exception e){}
         }
-        alive = true;
+        alive = false;
         JOptionPane.showMessageDialog(null, "you died");
-        
     }
-
     public Player(){
         x = 100;
         y = 350;

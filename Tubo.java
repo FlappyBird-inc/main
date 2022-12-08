@@ -8,6 +8,7 @@ public class Tubo extends Thread
     public Rectangle hitMeBaby,hitMeBabyParte2LaVendetta;
     private int w,h;                      //up   down
     private int[][] pos = new int[2][2];//{{x,0},{x,y}};
+    private Player p = new Player(); 
     public Tubo(int x,int y){
         pos[0][0] = x;
         pos[0][1] = 0;
@@ -26,7 +27,7 @@ public class Tubo extends Thread
         int x = pos[0][0];
         int y = pos[0][1];
         int y1 = pos[1][1];
-        while(true){
+        while(p.gameOver()){
             tUp.setLocation(x,y);
             tDown.setLocation(x,y1);
             x-=2;
