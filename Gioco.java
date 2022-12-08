@@ -11,6 +11,7 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
     private Tubo t1 = new Tubo(500,600);
     private Tubo t2 = new Tubo(800,600);
     private Tubo t3 = new Tubo(1100,600);
+    private Punteggio punti=new Punteggio();
     private int x = p.getX();
     private int y = p.getY();
     public Gioco(){
@@ -35,12 +36,15 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
         t1.getTDown().setSize(t1.getW(),t1.getH());
         t2.getTDown().setSize(t2.getW(),t2.getH());
         t3.getTDown().setSize(t3.getW(),t3.getH());
+        punti.getL().setLocation(punti.getX(),punti.getY());
+        p.getL().setSize(punti.getW(),punti.getH());
         add(t1.getTUp());
         add(t2.getTUp());
         add(t3.getTUp());
         add(t1.getTDown());
         add(t2.getTDown());
         add(t3.getTDown());
+        add(punti.getL());
         add(p.getL());
         setFocusable(true);
         setVisible(true);
@@ -48,6 +52,7 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
         t1.start();
         t2.start();
         t3.start();
+        punti.start();
     }
     public void actionPerformed(ActionEvent e){}
     public void keyPressed(KeyEvent e){
