@@ -30,6 +30,8 @@ public class Tubo extends Thread
         while(p.gameOver()){
             tUp.setLocation(x,y);
             tDown.setLocation(x,y1);
+            hitMeBaby.setLocation(x,y);
+            hitMeBabyParte2LaVendetta.setLocation(x,y1);
             x-=2;
             if(x < 30)
                 x = 1000;
