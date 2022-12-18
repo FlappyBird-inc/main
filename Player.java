@@ -10,7 +10,7 @@ public class Player extends Thread
     private static boolean alive;
     public void run(){
         alive = true;
-        while(y != 700){
+        while(y != 700 && y != 0){
             p.setLocation(x,y);
             player.setLocation(x,y);
             y+=2;
@@ -21,7 +21,6 @@ public class Player extends Thread
         }
         GameOver();
     }
-
     public Player(){
         x = 100;
         y = 350;

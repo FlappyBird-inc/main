@@ -1,17 +1,17 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.KeyListener;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.*;
 
-public class Gioco extends JFrame implements ActionListener,KeyListener
+public class Gioco extends JFrame implements KeyListener
 {
+    JLayeredPane layered = new JLayeredPane();
     public Player p = new Player();
-    private Tubo t1 = new Tubo(500,600);
-    private Tubo t2 = new Tubo(800,600);
-    private Tubo t3 = new Tubo(1100,600);
+    private Punteggio punti=new Punteggio();
+    private Tubo t1 = new Tubo(500,600,punti);
+    private Tubo t2 = new Tubo(800,600,punti);
+    private Tubo t3 = new Tubo(1100,600,punti);
     private Hitboxes h= new Hitboxes();
     private int x = p.getX();
     private int y = p.getY();
@@ -22,35 +22,41 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
     public Gioco(){
         init();
     }
-   
     public void init(){ //initialize 6 tubo, 2 for each object
         setLayout(null);
-        background.setBounds(0,0,1920,1080);
-        setSize(1920,1080);
+        setSize(1000,1000);
+        setLocationRelativeTo(null);
+        this.setContentPane(layered);
         this.addKeyListener(this);
+        //player
         p.getL().setLocation(p.getX(),p.getY());
         p.getL().setSize(p.getW(),p.getH());
-        t1.getTUp().setLocation(t1.getPos(0,"x"),t1.getPos(0,"y"));
-        t2.getTUp().setLocation(t2.getPos(0,"x"),t2.getPos(0,"y"));
-        t3.getTUp().setLocation(t3.getPos(0,"x"),t3.getPos(0,"y"));
-        t1.getTUp().setSize(t1.getW(),t1.getH());
-        t2.getTUp().setSize(t2.getW(),t2.getH());
-        t3.getTUp().setSize(t3.getW(),t3.getH());
-        t1.getTDown().setLocation(t1.getPos(1,"x"),t1.getPos(1,"y"));
-        t2.getTDown().setLocation(t2.getPos(1,"x"),t2.getPos(1,"y"));
-        t3.getTDown().setLocation(t3.getPos(1,"x"),t3.getPos(1,"y"));
-        t1.getTDown().setSize(t1.getW(),t1.getH());
-        t2.getTDown().setSize(t2.getW(),t2.getH());
-        t3.getTDown().setSize(t3.getW(),t3.getH());
+        //tubo1
+        t1.getTUp().setBounds(t1.getPos(0,"x"),t1.getPos(0,"y"),t1.getW(),t1.getH());
+        t1.getTDown().setBounds(t1.getPos(1,"x"),t1.getPos(1,"y"),t1.getW(),t1.getH());
+        //tubo2
+        t2.getTUp().setBounds(t2.getPos(0,"x"),t2.getPos(0,"y"),t2.getW(),t2.getH());
+        t2.getTDown().setBounds(t2.getPos(1,"x"),t2.getPos(1,"y"),t2.getW(),t2.getH());
+        //tubo3
+        t3.getTUp().setBounds(t3.getPos(0,"x"),t3.getPos(0,"y"),t3.getW(),t3.getH());
+        t3.getTDown().setBounds(t3.getPos(1,"x"),t3.getPos(1,"y"),t3.getW(),t3.getH());
+        //score
+        punti.getL().setLocation(punti.getX(),punti.getY());
+        punti.getL().setSize(punti.getW(),punti.getH());
+        punti.getL().setFont(new Font("Comic Sans", Font.PLAIN, 50));
+
         add(t1.getTUp());
         add(t2.getTUp());
         add(t3.getTUp());
         add(t1.getTDown());
         add(t2.getTDown());
         add(t3.getTDown());
+        add(punti.getL());
+        layered.add(punti.getL(), 0);
         add(p.getL());
         setFocusable(true);
         setVisible(true);
+        //threads
         p.start();
         t1.start();
         t2.start();
@@ -70,19 +76,13 @@ public class Gioco extends JFrame implements ActionListener,KeyListener
         }
     }
     public void keyPressed(KeyEvent e){
-        if (inGame==true){  
-            if (e.getKeyCode() == KeyEvent.VK_SPACE){//on spacebar pressed flappy bird flies
-                y = p.getY();
-                p.interrupt();
-                y-=40;
-                p.setY(y);
-                p.getL().setLocation(x,y);
-                try{
-                    Thread.sleep(10);
-                }
-                catch(Exception yeet){}
-                p.start();
-            }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE){//on spacebar pressed flappy bird flies
+            y = p.getY();
+            p.interrupt();
+            y-=40;
+            p.setY(y);
+            p.getL().setLocation(x,y);
+            p.start();
         }
     }
     public void keyReleased(KeyEvent e){}
