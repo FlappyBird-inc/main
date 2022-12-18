@@ -32,19 +32,18 @@ public class Tubo extends Thread
         while(p.gameOver()){
             tUp.setLocation(x,y);
             tDown.setLocation(x,y1);
+            hitMeBaby.setLocation(x,y);
+            hitMeBabyParte2LaVendetta.setLocation(x,y1);
             x-=1;
             if(x == 100){
                 int parse = Integer.parseInt(score.getScore())+1;
                 String pass = String.valueOf(parse);
                 score.setScore(pass);
             }
-            hitMeBaby.setLocation(x,y);
-            hitMeBabyParte2LaVendetta.setLocation(x,y1);
-            x-=2;
             if(x < -66)
                 x = 1000;
             try{
-                Thread.sleep(8);
+                Thread.sleep(5);
             }
             catch(Exception e){}
         }

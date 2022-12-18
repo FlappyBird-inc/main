@@ -1,4 +1,3 @@
-import java.awt.*;
 import javax.swing.*;
 import java.awt.event.KeyListener;
 import java.awt.Font;
@@ -41,9 +40,10 @@ public class Gioco extends JFrame implements KeyListener
         t3.getTUp().setBounds(t3.getPos(0,"x"),t3.getPos(0,"y"),t3.getW(),t3.getH());
         t3.getTDown().setBounds(t3.getPos(1,"x"),t3.getPos(1,"y"),t3.getW(),t3.getH());
         //score
-        punti.getL().setLocation(punti.getX(),punti.getY());
-        punti.getL().setSize(punti.getW(),punti.getH());
+        punti.getL().setBounds(punti.getX(),punti.getY(),punti.getW(),punti.getH());
         punti.getL().setFont(new Font("Comic Sans", Font.PLAIN, 50));
+        
+        background.setBounds(getBounds());
 
         add(t1.getTUp());
         add(t2.getTUp());
@@ -52,6 +52,7 @@ public class Gioco extends JFrame implements KeyListener
         add(t2.getTDown());
         add(t3.getTDown());
         add(punti.getL());
+        add(background);
         layered.add(punti.getL(), 0);
         add(p.getL());
         setFocusable(true);
@@ -66,7 +67,7 @@ public class Gioco extends JFrame implements KeyListener
     class Hitboxes extends Thread{
         public void run(){
             while(inGame){
-               System.out.println("player position "+p.player.getX()+"  "+p.player.getY()+"rectangle 1 position "+t1.hitMeBaby.getX()+"  "+t1.hitMeBabyParte2LaVendetta.getX()+t1.hitMeBaby.getY()+"  "+t1.hitMeBabyParte2LaVendetta.getY()+"rectangle 2 position "+t2.hitMeBaby.getX()+"  "+t2.hitMeBabyParte2LaVendetta.getX()+t2.hitMeBaby.getY()+"  "+t2.hitMeBabyParte2LaVendetta.getY()+"rectangle 3 position "+t3.hitMeBaby.getX()+"  "+t3.hitMeBabyParte2LaVendetta.getX()+t3.hitMeBaby.getY()+"  "+t3.hitMeBabyParte2LaVendetta.getY());
+                System.out.println("player position "+p.player.getX()+"  "+p.player.getY()+"rectangle 1 position "+t1.hitMeBaby.getX()+"  "+t1.hitMeBabyParte2LaVendetta.getX()+t1.hitMeBaby.getY()+"  "+t1.hitMeBabyParte2LaVendetta.getY()+"rectangle 2 position "+t2.hitMeBaby.getX()+"  "+t2.hitMeBabyParte2LaVendetta.getX()+t2.hitMeBaby.getY()+"  "+t2.hitMeBabyParte2LaVendetta.getY()+"rectangle 3 position "+t3.hitMeBaby.getX()+"  "+t3.hitMeBabyParte2LaVendetta.getX()+t3.hitMeBaby.getY()+"  "+t3.hitMeBabyParte2LaVendetta.getY());
                 if(p.player.intersects(t1.hitMeBaby)||p.player.intersects(t1.hitMeBabyParte2LaVendetta)||p.player.intersects(t2.hitMeBaby)||p.player.intersects(t2.hitMeBabyParte2LaVendetta)||p.player.intersects(t3.hitMeBaby)||p.player.intersects(t3.hitMeBabyParte2LaVendetta)){
                     inGame=false;
                     p.GameOver();
@@ -87,9 +88,4 @@ public class Gioco extends JFrame implements KeyListener
     }
     public void keyReleased(KeyEvent e){}
     public void keyTyped(KeyEvent e){}
-
-    public void actionPerformed(ActionEvent e) {
-        
-        
-    }
 }
