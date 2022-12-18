@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.KeyListener;
 import java.awt.Font;
+import java.awt.event.*;
 import java.awt.event.KeyEvent;
 
 public class Gioco extends JFrame implements KeyListener
@@ -17,6 +18,7 @@ public class Gioco extends JFrame implements KeyListener
     public boolean inGame=true;
     private ImageIcon back =new ImageIcon("img/flappy-background.png");
     private JLabel background=new JLabel(back);
+    private JButton retry = new JButton("retry");
     
     public Gioco(){
         init();
@@ -45,6 +47,15 @@ public class Gioco extends JFrame implements KeyListener
         
         background.setBounds(getBounds());
 
+        retry.setBounds(500,500, 200,100);
+        retry.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                dispose();
+                Gioco game = new Gioco();
+                game.init();
+            }
+        });
+
         add(t1.getTUp());
         add(t2.getTUp());
         add(t3.getTUp());
@@ -71,6 +82,7 @@ public class Gioco extends JFrame implements KeyListener
                 if(p.player.intersects(t1.hitMeBaby)||p.player.intersects(t1.hitMeBabyParte2LaVendetta)||p.player.intersects(t2.hitMeBaby)||p.player.intersects(t2.hitMeBabyParte2LaVendetta)||p.player.intersects(t3.hitMeBaby)||p.player.intersects(t3.hitMeBabyParte2LaVendetta)){
                     inGame=false;
                     p.GameOver();
+                    add(retry);
                     p.interrupt();
                 }
             }
