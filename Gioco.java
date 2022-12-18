@@ -62,6 +62,8 @@ public class Gioco extends JFrame implements KeyListener
         add(t2.getTDown());
         add(t3.getTDown());
         add(punti.getL());
+        add(retry);
+        retry.setVisible(false);
         layered.add(punti.getL(), 0);
         add(p.getL());
         add(background);
@@ -81,8 +83,8 @@ public class Gioco extends JFrame implements KeyListener
                 if(p.player.intersects(t1.hitMeBaby)||p.player.intersects(t1.hitMeBabyParte2LaVendetta)||p.player.intersects(t2.hitMeBaby)||p.player.intersects(t2.hitMeBabyParte2LaVendetta)||p.player.intersects(t3.hitMeBaby)||p.player.intersects(t3.hitMeBabyParte2LaVendetta)){
                     inGame=false;
                     p.GameOver();
-                    add(retry);
                     p.interrupt();
+                    retry.setVisible(true);
                 }
             }
         }

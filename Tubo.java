@@ -30,6 +30,7 @@ public class Tubo extends Thread
         int y = pos[0][1];
         int y1 = pos[1][1];
         while(p.gameOver()){
+            y = (int)Math.random()*100;
             tUp.setLocation(x,y);
             tDown.setLocation(x,y1);
             hitMeBaby.setLocation(x,y);
@@ -40,10 +41,12 @@ public class Tubo extends Thread
                 String pass = String.valueOf(parse);
                 score.setScore(pass);
             }
-            if(x < -66)
+            if(x < -66){
                 x = 1000;
-                y = (int)Math.random()*100+y1;
-                y1 =(int)Math.random()*100;
+                int distance = (int)Math.random()*100;
+                y1 = distance + 500;
+                y = -distance;
+            }
             try{
                 Thread.sleep(5);
             }
