@@ -47,12 +47,11 @@ public class Gioco extends JFrame implements KeyListener
         
         background.setBounds(getBounds());
 
-        retry.setBounds(500,500, 200,100);
+        retry.setBounds(500,350, 100,50);
         retry.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(java.awt.event.ActionEvent e) {
                 dispose();
                 Gioco game = new Gioco();
-                game.init();
             }
         });
 
