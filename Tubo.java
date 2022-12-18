@@ -42,6 +42,8 @@ public class Tubo extends Thread
             }
             if(x < -66)
                 x = 1000;
+                y = (int)Math.random()*100+y1;
+                y1 =(int)Math.random()*100;
             try{
                 Thread.sleep(5);
             }

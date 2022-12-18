@@ -16,7 +16,7 @@ public class Gioco extends JFrame implements KeyListener
     private int x = p.getX();
     private int y = p.getY();
     public boolean inGame=true;
-    private ImageIcon back =new ImageIcon("img/flappy-background.png");
+    private ImageIcon back =new ImageIcon("img/background.png");
     private JLabel background=new JLabel(back);
     private JButton retry = new JButton("retry");
     
@@ -45,13 +45,13 @@ public class Gioco extends JFrame implements KeyListener
         punti.getL().setBounds(punti.getX(),punti.getY(),punti.getW(),punti.getH());
         punti.getL().setFont(new Font("Comic Sans", Font.PLAIN, 50));
         
-        background.setBounds(getBounds());
+        background.setBounds(0,0,1000,800);
 
-        retry.setBounds(500,350, 100,50);
+        retry.setBounds(450,400, 100,50);
         retry.addActionListener(new ActionListener(){
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                dispose();
                 Gioco game = new Gioco();
+                dispose();
             }
         });
 
@@ -62,9 +62,9 @@ public class Gioco extends JFrame implements KeyListener
         add(t2.getTDown());
         add(t3.getTDown());
         add(punti.getL());
-        add(background);
         layered.add(punti.getL(), 0);
         add(p.getL());
+        add(background);
         setFocusable(true);
         setVisible(true);
         //threads
