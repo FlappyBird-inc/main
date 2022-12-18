@@ -37,8 +37,10 @@ public class Tubo extends Thread
                 int parse = Integer.parseInt(score.getScore())+1;
                 String pass = String.valueOf(parse);
                 score.setScore(pass);
-
             }
+            hitMeBaby.setLocation(x,y);
+            hitMeBabyParte2LaVendetta.setLocation(x,y1);
+            x-=2;
             if(x < -66)
                 x = 1000;
             try{

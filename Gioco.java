@@ -1,4 +1,4 @@
-//import java.awt.*;
+import java.awt.*;
 import javax.swing.*;
 import java.awt.event.KeyListener;
 import java.awt.Font;
@@ -12,8 +12,13 @@ public class Gioco extends JFrame implements KeyListener
     private Tubo t1 = new Tubo(500,600,punti);
     private Tubo t2 = new Tubo(800,600,punti);
     private Tubo t3 = new Tubo(1100,600,punti);
+    private Hitboxes h= new Hitboxes();
     private int x = p.getX();
     private int y = p.getY();
+    public boolean inGame=true;
+    private ImageIcon back =new ImageIcon("img/flappy-background.png");
+    private JLabel background=new JLabel(back);
+    
     public Gioco(){
         init();
     }
@@ -56,6 +61,19 @@ public class Gioco extends JFrame implements KeyListener
         t1.start();
         t2.start();
         t3.start();
+        h.start();
+    }
+    class Hitboxes extends Thread{
+        public void run(){
+            while(inGame){
+               System.out.println("player position "+p.player.getX()+"  "+p.player.getY()+"rectangle 1 position "+t1.hitMeBaby.getX()+"  "+t1.hitMeBabyParte2LaVendetta.getX()+t1.hitMeBaby.getY()+"  "+t1.hitMeBabyParte2LaVendetta.getY()+"rectangle 2 position "+t2.hitMeBaby.getX()+"  "+t2.hitMeBabyParte2LaVendetta.getX()+t2.hitMeBaby.getY()+"  "+t2.hitMeBabyParte2LaVendetta.getY()+"rectangle 3 position "+t3.hitMeBaby.getX()+"  "+t3.hitMeBabyParte2LaVendetta.getX()+t3.hitMeBaby.getY()+"  "+t3.hitMeBabyParte2LaVendetta.getY());
+                if(p.player.intersects(t1.hitMeBaby)||p.player.intersects(t1.hitMeBabyParte2LaVendetta)||p.player.intersects(t2.hitMeBaby)||p.player.intersects(t2.hitMeBabyParte2LaVendetta)||p.player.intersects(t3.hitMeBaby)||p.player.intersects(t3.hitMeBabyParte2LaVendetta)){
+                    inGame=false;
+                    p.GameOver();
+                    p.interrupt();
+                }
+            }
+        }
     }
     public void keyPressed(KeyEvent e){
         if (e.getKeyCode() == KeyEvent.VK_SPACE){//on spacebar pressed flappy bird flies
@@ -69,4 +87,9 @@ public class Gioco extends JFrame implements KeyListener
     }
     public void keyReleased(KeyEvent e){}
     public void keyTyped(KeyEvent e){}
+
+    public void actionPerformed(ActionEvent e) {
+        
+        
+    }
 }

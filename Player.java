@@ -12,14 +12,14 @@ public class Player extends Thread
         alive = true;
         while(y != 700 && y != 0){
             p.setLocation(x,y);
+            player.setLocation(x,y);
             y+=2;
             try{
                 Thread.sleep(10);
             }
             catch(Exception e){}
         }
-        alive = false;
-        JOptionPane.showMessageDialog(null, "you died");
+        GameOver();
     }
     public Player(){
         x = 100;
@@ -47,6 +47,11 @@ public class Player extends Thread
     }
     public void setY(int y){
         this.y = y;
+    }
+    public void GameOver(){
+        alive=false;
+        JOptionPane.showMessageDialog(null, "you died");
+        this.interrupt();
     }
     public boolean gameOver(){
         return alive;
