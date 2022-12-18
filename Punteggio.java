@@ -1,20 +1,17 @@
 import java.awt.Rectangle;
 import javax.swing.*;
-public class Punteggio extends Thread {
+public class Punteggio{
     private JLabel l;
     public Rectangle p;
     private int x,y,w,h;
+    private String score = "0";
     public Punteggio(){
-        x=100;
+        x=500;
         y=100;
         w=100;
         h=100;
         p=new Rectangle(x,y,w,h);
-        l=new JLabel("0");
-    }
-    public void run(){
-       //l.setLocation(x, y); non serve(è già settato in Gioco) 
-
+        l=new JLabel(score);
     }
     public JLabel getL(){
         return l;
@@ -31,5 +28,11 @@ public class Punteggio extends Thread {
     public int getH(){
         return h;
     }
-
+    public String getScore() {
+        return score;
+    }
+    public void setScore(String score) {
+        this.score = score;
+        l.setText(score);
+    }
 }

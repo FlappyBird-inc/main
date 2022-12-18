@@ -9,7 +9,9 @@ public class Tubo extends Thread
     private int w,h;                      //up   down
     private int[][] pos = new int[2][2];//{{x,0},{x,y}};
     private Player p = new Player(); 
-    public Tubo(int x,int y){
+    private Punteggio score;
+    public Tubo(int x,int y, Punteggio score){
+        this.score = score;
         pos[0][0] = x;
         pos[0][1] = 0;
         pos[1][0] = x;
@@ -30,11 +32,17 @@ public class Tubo extends Thread
         while(p.gameOver()){
             tUp.setLocation(x,y);
             tDown.setLocation(x,y1);
-            x-=2;
-            if(x < 30)
+            x-=1;
+            if(x == 100){
+                int parse = Integer.parseInt(score.getScore())+1;
+                String pass = String.valueOf(parse);
+                score.setScore(pass);
+
+            }
+            if(x < -66)
                 x = 1000;
             try{
-                Thread.sleep(10);
+                Thread.sleep(8);
             }
             catch(Exception e){}
         }
